@@ -1,12 +1,6 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
-
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
-
-# frozen_string_literal: true
-
-# frozen_string_literal: true
 
 RSpec.describe 'Current user endpoints' do
   resource 'User' do
@@ -32,4 +26,5 @@ RSpec.describe 'Current user endpoints' do
         end
       end
     end
+  end
 end

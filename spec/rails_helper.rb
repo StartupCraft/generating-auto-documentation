@@ -14,7 +14,7 @@ RspecApiDocumentation.configure do |config|
   config.request_headers_to_include = ['Authorization', 'Content-Type']
   config.response_headers_to_include = ['Content-Type']
   config.request_body_formatter = :json
-End
+end
 
 Knock.setup do |config|
   config.token_audience = nil
