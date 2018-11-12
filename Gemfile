@@ -48,7 +48,6 @@ end
 
 group :test do
   gem 'rspec_api_documentation', '~> 6.1.0'
-  gem "json_matchers"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -76,9 +76,6 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
-    json_matchers (0.10.0)
-      json_schema
-    json_schema (0.19.1)
     jsonapi-deserializable (0.2.0)
     jsonapi-parser (0.1.1)
     jsonapi-rb (0.5.0)
@@ -208,7 +205,6 @@ DEPENDENCIES
   dotenv-rails (~> 2.2)
   factory_bot_rails (~> 4.8)
   ffaker (~> 2.9)
-  json_matchers
   jsonapi-rails!
   knock (~> 2.1)
   listen (>= 3.0.5, < 3.2)
