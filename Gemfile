@@ -47,7 +47,7 @@ group :development do
 end
 
 group :test do
-  gem 'rspec_api_documentation', '~> 6.1.0', github: "zipmark/rspec_api_documentation"
+  gem 'rspec_api_documentation', '~> 6.1.0'
   gem "json_matchers"
 end
 

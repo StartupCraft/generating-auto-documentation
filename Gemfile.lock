@@ -6,15 +6,6 @@ GIT
       jsonapi-parser (~> 0.1.0)
       jsonapi-rb (~> 0.5.0)
 
-GIT
-  remote: https://github.com/zipmark/rspec_api_documentation.git
-  revision: 6a4a17330076479beb10d69db20bca1ff6724e77
-  specs:
-    rspec_api_documentation (6.1.0)
-      activesupport (>= 3.0.0)
-      mustache (~> 1.0, >= 0.99.4)
-      rspec (~> 3.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -183,6 +174,10 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    rspec_api_documentation (6.1.0)
+      activesupport (>= 3.0.0)
+      mustache (~> 1.0, >= 0.99.4)
+      rspec (~> 3.0)
     ruby_dep (1.5.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -222,7 +217,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.1)
   rspec-rails (~> 3.8)
-  rspec_api_documentation (~> 6.1.0)!
+  rspec_api_documentation (~> 6.1.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
