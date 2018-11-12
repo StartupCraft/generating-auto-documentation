@@ -3,7 +3,7 @@
 RSpec.describe 'Users' do
   resource 'Current user endpoint' do
     route '/api/v1/user', 'Current user endpoint' do
-      get 'Get current' do
+      get 'Get current user' do
         context 'when user is authenticated', :auth do
           example_request 'Responds with 200' do
             expect(status).to eq(200)
