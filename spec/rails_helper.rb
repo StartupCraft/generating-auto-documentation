@@ -6,7 +6,6 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'rspec_api_documentation/dsl'
-require 'json_matchers/rspec'
 require 'factory_bot_rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
