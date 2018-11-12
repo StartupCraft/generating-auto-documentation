@@ -6,9 +6,9 @@ This project is a support to the solution found at [StartupCraft]
 
 
 ## Thanks:
-------
+---
 Special thanks to Vadim Shalamov for describing and wrapping the example for a solution.
 
 ## License
-------
+---
 MIT
