@@ -1,24 +1,5 @@
-# README
+# Automatically Generate Documentation with CircleCI
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project is a support to the solution found at [StartupCraft],
+(https://startupcraft.io) and described in article:
+["Automatically Generate Documentation with CircleCI"](https://startupcraft.io/blog/automatically-generate-documentation-with-circleci).
