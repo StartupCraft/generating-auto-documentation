@@ -5,8 +5,12 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'rspec_api_documentation/dsl'
 require 'json_matchers/rspec'
+require 'factory_bot_rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 RspecApiDocumentation.configure do |config|
   config.api_name = 'generating-auto-documentation'
@@ -14,11 +18,6 @@ RspecApiDocumentation.configure do |config|
   config.request_headers_to_include = ['Authorization', 'Content-Type']
   config.response_headers_to_include = ['Content-Type']
   config.request_body_formatter = :json
-end
-
-Knock.setup do |config|
-  config.token_audience = nil
-  config.token_secret_signature_key = -> { Rails.application.secrets.secret_key_base }
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -45,6 +44,16 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+  config.include_context 'with authenticated_user', :auth
+
+  config.before do |example|
+    case example.metadata[:type]
+    when :acceptance
+      header "Content-Type", "application/vnd.api+json"
+    end
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

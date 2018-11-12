@@ -4,7 +4,7 @@ module Api
   module V1
     class UserController < ApplicationController
       def show
-        responds_with_resource(current_user)
+        render jsonapi: current_user
       end
     end
   end

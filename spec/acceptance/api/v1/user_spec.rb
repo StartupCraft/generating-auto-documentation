@@ -1,27 +1,18 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'Current user endpoints' do
-  resource 'User' do
-    route '/api/v1/user', 'Current user' do
-      parameter :include
-
-      get 'Show current user' do
-        context 'when user is not authenticated' do
-          example 'Responds with 401' do
-            do_request
-
-            expect(status).to eq(401)
+RSpec.describe 'Users' do
+  resource 'Current user endpoint' do
+    route '/api/v1/user', 'Current user endpoint' do
+      get 'Get current' do
+        context 'when user is authenticated', :auth do
+          example_request 'Responds with 200' do
+            expect(status).to eq(200)
           end
         end
 
-        context 'when user is authenticated', :auth do
-          example 'Responds with 200' do
-            do_request
-
-            expect(status).to eq(200)
-            expect(response_body).to match_json_schema('v1/user')
+        context 'when user is not authenticated' do
+          example_request 'Responds with 401' do
+            expect(status).to eq(401)
           end
         end
       end

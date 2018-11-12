@@ -24,13 +24,19 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'knock', '~> 2.1'
 
+gem 'jsonapi-rails', github: 'jsonapi-rb/jsonapi-rails'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 3.8'
+  gem 'factory_bot_rails', '~> 4.8'
+  gem 'ffaker', '~> 2.9'
+  gem 'dotenv-rails', '~> 2.2'
 end
 
 group :development do
