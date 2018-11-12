@@ -1,0 +1,95 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+
+references:
+  install_bundler: &install_bundler
+    run:
+      name: Install latest Bundler
+      command: gem install bundler
+
+  restore_cache: &restore_cache
+    restore_cache:
+      keys:
+      - v1-dependencies-{{ checksum "Gemfile.lock" }}
+      # fallback to using the latest cache if no exact match is found
+      - v1-dependencies-
+
+  install_dependencies: &install_dependencies
+    run:
+      name: install dependencies
+      command: bundle install --path vendor/bundle
+
+  save_cache: &save_cache
+    save_cache:
+      paths:
+        - ./vendor/bundle
+      key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+  setup_database: &setup_database
+    run:
+      name: Database setup
+      command: bundle exec rake db:migrate
+
+defaults: &defaults
+  docker:
+    - image: circleci/ruby:2.5.3
+      environment:
+        - RAILS_ENV: test
+        - BUNDLE_JOBS: 3
+        - BUNDLE_RETRY: 3
+        - PG_HOST: localhost
+        - PG_USER: circleci
+
+  working_directory: ~/repo
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - *install_bundler
+      - *restore_cache
+      - *install_dependencies
+      - *save_cache
+      - *setup_database
+
+      - run:
+          name: run tests
+          command: bundle exec rspec
+
+  generate_docs:
+    <<: *defaults
+    steps:
+      - checkout
+      - *install_bundler
+      - *restore_cache
+      - *install_dependencies
+      - *save_cache
+      - *setup_database
+
+      - run:
+          name: install apiaryio gem
+          command: gem install apiaryio
+
+      - run:
+          name: build documentation
+          command: bundle exec rake docs:generate
+
+      - run:
+          name: publish documentation
+          command: apiary publish --path="doc/api/index.apib" --api-name="generatingautodocumentation"
+
+workflows:
+  version: 2
+  build_and_generate_docs:
+    jobs:
+      - build
+      - generate_docs:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
